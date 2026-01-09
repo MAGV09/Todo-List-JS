@@ -1,11 +1,6 @@
-
-//add tasks to projects
-//complete tasks
-//delete tasks
-//edit tasks
 const tasksList = [];
 function getTask(taskId,tasksArray) {
-  return tasksArray.find((task) => (task.id = taskId));
+  return tasksArray.find((task) => (task.id === taskId));
 }
 function addTask(task,tasksArray) {
   tasksArray.push(task);
