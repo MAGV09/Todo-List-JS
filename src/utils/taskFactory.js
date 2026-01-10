@@ -7,6 +7,9 @@ function createTask(name, description = '', dueDate, priority, subTasks = []) {
     priority,
     subTasks,
     completed: false,
+     getTaskId() {
+      return this.id;
+    }
   };
 }
 
