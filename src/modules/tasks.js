@@ -9,7 +9,6 @@ function completeTask(task) {
 }
 
 function deleteTask(taskId, tasksArray) {
-//   tasksArray = tasksArray.filter((task) => task.id !== taskId);
  const index = tasksArray.findIndex(task => task.id === taskId);
   if (index !== -1) {
     tasksArray.splice(index, 1);

@@ -1,15 +1,11 @@
-function createTask(name, description = '', dueDate, priority, subTasks = []) {
+function createTask(name, description = '', dueDate, prioity) {
   return {
     id: crypto.randomUUID(),
     name,
     description,
     dueDate,
-    priority,
-    subTasks,
+    prioity,
     completed: false,
-     getTaskId() {
-      return this.id;
-    }
   };
 }
 

@@ -20,6 +20,7 @@ import {
   projectsList,
 } from './modules/projects';
 
+import { renderTasks } from './modules/render';
 const project1 = createProject('project1');
 
 addProject(project1);
@@ -38,3 +39,5 @@ function displayProjects(projectsArray) {
   });
 }
 displayProjects(projectsList)
+renderTasks(project1.tasksList)
+// createTaskCard()

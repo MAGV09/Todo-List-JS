@@ -18,17 +18,18 @@
           <p>Add task</p>
         </div>
         <div class="lists" id="workspace-el">
-          <p>My lists</p>
+          <p class="lists-title">My lists</p>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <title>plus</title>
             <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
           </svg>
         </div>
+        <div>Personal</div>
       </aside>
       <main class="main">
         <div id="tasks-page-el">
           <h2 id="project-title-el">Project title</h2>
-          <div class="task-container">
+          <!-- <div class="task-container">
             <input type="checkbox" name="checkbox" id="task-checkbox-el" />
             <div class="task-title-container">
               <p>task title</p>
@@ -49,11 +50,45 @@
             </div>
             <div class="task-description-container">
               <p class="task-description">task description</p>
-              <p>27/12/2026</p>
+              <div class="date-container">
+                <p>27/12/2026</p>
+                <p>Priority</p>
+              </div>
             </div>
-          </div>
+          </div> -->
         </div>
-        
+        <!-- <dialog id="task-dialog" open="true">
+          <form action="" method="dialog">
+            <input type="text" placeholder="Title" id="title" required />
+            <input type="text" placeholder="Description" id="description" />
+            <input type="date" name="date" id="date" required />
+            <label for="priority">Priority</label>
+            <select id="priority" required>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+
+            <div class="button-group">
+              <select name="list" id="list-in" required>
+                <option value="list1">list1</option>
+                <option value="list2">list2</option>
+              </select>
+              <button type="button" id="cancel-btn">Cancel</button>
+              <button type="submit">Add Task</button>
+            </div>
+          </form>
+        </dialog> -->
+
+        <dialog id="list-dialog">
+          <form action="" method="dialog">
+            <input type="text" placeholder="Title" id="title" required />
+            <div class="button-group">
+              <button type="button" id="cancel-btn">Cancel</button>
+              <button type="submit">Add</button>
+            </div>
+          </form>
+        </dialog>
       </main>
     </div>
   </body>

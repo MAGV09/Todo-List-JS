@@ -1,11 +1,8 @@
-function createProject(name, tasksList = []) {
+function createProject(name) {
   return {
     id: crypto.randomUUID(),
     name,
-    tasksList,
-    getProjectId() {
-      return this.id;
-    },
+    tasksList:[],
   };
 }
 
