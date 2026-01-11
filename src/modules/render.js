@@ -1,5 +1,5 @@
 import createIcon from '../components/ui';
-const tasksPage = document.querySelector('#project-title-el');
+const tasksPage = document.querySelector('#tasks-page-el');
 function createTaskCard() {
   const taskContainer = document.createElement('div');
   taskContainer.classList.add('task-container');
@@ -38,21 +38,25 @@ function createTaskCard() {
   iconContainer.appendChild(deleteTask);
 
   const taskDescriptionContainer = document.createElement('div');
+  taskDescriptionContainer.classList.add('task-description-container');
   taskContainer.appendChild(taskDescriptionContainer);
 
   const taskDescription = document.createElement('p');
+  taskDescription.classList.add('task-description');
   taskDescriptionContainer.appendChild(taskDescription);
 
   const taskDateContainer = document.createElement('div');
+  taskDateContainer.classList.add('date-container')
   taskDescriptionContainer.appendChild(taskDateContainer);
+ 
 
   const taskDate = document.createElement('p');
   taskDateContainer.appendChild(taskDate);
 
-  const taskPrioity = document.createElement('p');
-  taskDateContainer.appendChild(taskPrioity);
+  const taskPriority = document.createElement('p');
+  taskDateContainer.appendChild(taskPriority);
 
-  return { taskTitle, taskDescription, taskDate, taskPrioity };
+  return { taskTitle, taskDescription, taskDate, taskPriority };
 }
 function renderTasks(tasksArr) {
   tasksArr.forEach((task) => {
@@ -61,7 +65,7 @@ function renderTasks(tasksArr) {
     taskCard.taskTitle.textContent = task.name;
     // taskCard.description.textContent = task.description;
     taskCard.taskDate.textContent = task.dueDate;
-    taskCard.taskPrioity.textContent = task.prioity;
+    taskCard.taskPriority.textContent = task.priority;
     // if (!task.description) {
     //   taskCard.taskDescription.remove();
     // }
