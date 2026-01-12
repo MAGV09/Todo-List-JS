@@ -1,5 +1,6 @@
-import createIcon from '../components/ui';
-const tasksPage = document.querySelector('#tasks-page-el');
+import createIcon from '../../components/ui';
+const tasksPage = document.querySelector('#task-hero-el');
+const projectsContainer = document.querySelector('#lists-container-el');
 function createTaskCard() {
   const taskContainer = document.createElement('div');
   taskContainer.classList.add('task-container');
@@ -46,9 +47,8 @@ function createTaskCard() {
   taskDescriptionContainer.appendChild(taskDescription);
 
   const taskDateContainer = document.createElement('div');
-  taskDateContainer.classList.add('date-container')
+  taskDateContainer.classList.add('date-container');
   taskDescriptionContainer.appendChild(taskDateContainer);
- 
 
   const taskDate = document.createElement('p');
   taskDateContainer.appendChild(taskDate);
@@ -58,17 +58,31 @@ function createTaskCard() {
 
   return { taskTitle, taskDescription, taskDate, taskPriority };
 }
+
+function createProjectCard() {
+  const project = document.createElement('p');
+  projectsContainer.appendChild(project);
+  return project;
+}
 function renderTasks(tasksArr) {
+  tasksPage.textContent = '';
   tasksArr.forEach((task) => {
     const taskCard = createTaskCard();
-    console.log(taskCard);
     taskCard.taskTitle.textContent = task.name;
-    // taskCard.description.textContent = task.description;
     taskCard.taskDate.textContent = task.dueDate;
     taskCard.taskPriority.textContent = task.priority;
-    // if (!task.description) {
-    //   taskCard.taskDescription.remove();
-    // }
+    task.description
+      ? (taskCard.taskDescription.textContent = task.description)
+      : taskCard.taskDescription.remove();
   });
 }
-export { renderTasks };
+
+function renderProjects(projectArr) {
+  projectsContainer.textContent = '';
+
+  projectArr.forEach((project) => {
+    const projectTitle = createProjectCard();
+    projectTitle.textContent = project.name;
+  });
+}
+export { renderTasks, renderProjects };

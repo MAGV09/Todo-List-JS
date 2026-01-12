@@ -10,7 +10,6 @@ import {
   completeTask,
   deleteTask,
   editTask,
-  
 } from './modules/tasks';
 import {
   getProject,
@@ -20,9 +19,13 @@ import {
   projectsList,
 } from './modules/projects';
 
-import { renderTasks } from './modules/render';
+import { renderTasks, renderProjects } from './modules/dom/render';
+import './modules/dom/domController.js'
+const addProjectEl = document.querySelector('#add-project-el');
+const addTaskEl = document.querySelector('#add-task-el');
 const project1 = createProject('project1');
 
+// addProjectEl.addEventListener('click');
 addProject(project1);
 const task1 = createTask(
   'finish the project',
@@ -30,14 +33,18 @@ const task1 = createTask(
   '09/01/2026',
   'medium'
 );
+const task2 = createTask('project', undefined, '010/29/2026', 'high');
 addTask(task1, project1.tasksList);
-console.log(project1);
+addTask(task2, project1.tasksList);
 
-function displayProjects(projectsArray) {
-  projectsArray.forEach((project) => {
-    console.log({ projectName: project.name, tasksList: project.tasksList });
-  });
-}
-displayProjects(projectsList)
-renderTasks(project1.tasksList)
+// console.log(project1);
+
+// function displayProjects(projectsArray) {
+//   projectsArray.forEach((project) => {
+//     console.log({ projectName: project.name, tasksList: project.tasksList });
+//   });
+// }
+// displayProjects(projectsList)
+renderProjects(projectsList);
+renderTasks(project1.tasksList);
 // createTaskCard()
