@@ -20,7 +20,8 @@ import {
 } from './modules/projects';
 
 import { renderTasks, renderProjects } from './modules/dom/render';
-import './modules/dom/domController.js'
+import './modules/dom/projectController.js'
+import './modules/dom/taskController.js'
 const addProjectEl = document.querySelector('#add-project-el');
 const addTaskEl = document.querySelector('#add-task-el');
 const project1 = createProject('project1');

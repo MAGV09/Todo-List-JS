@@ -1,6 +1,6 @@
 let projectsList = [];
-function getProject(projectId) {
-  return projectsList.find((project) => project.id === projectId);
+function getProject(projectTitle) {
+  return projectsList.find((project) => project.name === projectTitle);
 }
 function addProject(project) {
   projectsList.push(project);

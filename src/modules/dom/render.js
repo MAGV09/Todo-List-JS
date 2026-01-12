@@ -61,6 +61,7 @@ function createTaskCard() {
 
 function createProjectCard() {
   const project = document.createElement('p');
+  project.classList.add('project')
   projectsContainer.appendChild(project);
   return project;
 }
@@ -85,4 +86,5 @@ function renderProjects(projectArr) {
     projectTitle.textContent = project.name;
   });
 }
+
 export { renderTasks, renderProjects };
