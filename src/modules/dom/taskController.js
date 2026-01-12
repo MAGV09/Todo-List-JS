@@ -55,5 +55,6 @@ function createProjectsOption() {
     const option = document.createElement('option');
     taskListSelector.appendChild(option);
     option.textContent = project.name;
+    option.setAttribute('value',project.id)
   });
 }

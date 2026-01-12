@@ -27,6 +27,13 @@ projectCancelBtn.addEventListener('click', () => {
 projectsContainer.addEventListener('click',(e)=>handleProjectSelect(e.target))
 
 function handleAddProject() {
+//     const currentProject=getProject(projectTitleInput.value)
+//   if(!currentProject){
+    
+//   }
+// else{
+//     editProject(currentProject)
+// }
   const project = createProject(projectTitleInput.value);
   addProject(project);
   renderProjects(projectsList);
@@ -36,8 +43,14 @@ function handleAddProject() {
 
 function handleProjectSelect(element){
 if(element?.matches('.project')){
-    const currentProject = getProject(element?.textContent)
+    const currentProject = getProject(element?.dataset.projectId)
+    console.log(currentProject);
     projectTitleEl.textContent= element?.textContent
     renderTasks(currentProject.tasksList)
 }
+// if(element?.matches('.edit-project')){
+//     const currentProject = getProject(element?.textContent)
+//     projectDialog.showModal()
+//     projectTitleInput.value=currentProject.name
+// }
 }

@@ -40,6 +40,12 @@ svg {
   font-size: 1.2rem;
   font-weight: 500;
 }
+.project-card{
+  display: flex;
+}
+.project-card>p{
+  margin-right: auto;
+}
 .main {
   justify-content: center;
   margin-top: 2rem;
@@ -86,7 +92,7 @@ svg {
 .task-icon-container > *:hover {
   background-color: #dddddd;
 }
-.task-container:hover .task-icon-container {
+.task-container:hover .task-icon-container,.project-card:hover .task-icon-container {
   opacity: 1;
 }
 
