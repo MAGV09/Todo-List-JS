@@ -63,6 +63,7 @@ function createProjectCard() {
   const projectCard = document.createElement('div');
   projectsContainer.appendChild(projectCard);
   projectCard.classList.add('project-card')
+
   const project = document.createElement('p');
   project.classList.add('project');
   projectCard.appendChild(project);
@@ -91,7 +92,7 @@ function createProjectCard() {
 }
 function renderTasks(tasksArr) {
   tasksPage.textContent = '';
-  tasksArr.forEach((task) => {
+  tasksArr?.forEach((task) => {
     const taskCard = createTaskCard();
     taskCard.taskTitle.textContent = task.name;
     taskCard.taskDate.textContent = task.dueDate;
