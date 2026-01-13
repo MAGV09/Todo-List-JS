@@ -24,8 +24,12 @@ svg {
   flex-direction: column;
   gap: 0.8rem;
 }
-.side-bar > *:hover {
+
+.side-bar > *:hover:not(#lists-container-el),.project-card:hover {
   background-color: #dddddd;
+}
+.project-card >.task-icon-container>*:hover{
+  background-color: #b8b8b8;
 }
 .add-task-container,
 .lists {
@@ -33,8 +37,14 @@ svg {
 }
 .add-task-container {
   font-weight: 700;
+  padding: 0.3rem 0rem;
+  border-radius: 5px;
 }
+.lists{
+  padding: 0.2rem 0;
+  border-radius: 5px;
 
+}
 .lists > .lists-title {
   margin-right: auto;
   font-size: 1.2rem;
@@ -64,6 +74,9 @@ svg {
   width: 50rem;
   margin-bottom: 1rem;
 }
+.task-title-container.completed>p{
+  text-decoration: line-through;
+}
 .task-title-container {
   grid-area: title;
   display: flex;
@@ -88,6 +101,7 @@ svg {
   grid-area: icons;
   opacity: 0;
   transition: all 0.2s;
+  padding: 0 0.5rem;
 }
 .task-icon-container > *:hover {
   background-color: #dddddd;

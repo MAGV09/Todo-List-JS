@@ -17,7 +17,10 @@ const projectsContainer = document.querySelector('#lists-container-el');
 const projectTitleEl = document.querySelector('#project-title-el');
 addProjectEl.addEventListener('click', () => projectDialog.showModal());
 
-projectForm.addEventListener('submit', handleAddProject);
+projectForm.addEventListener('submit',(e)=>{
+  e.preventDefault();
+  handleAddProject()
+} );
 
 projectCancelBtn.addEventListener('click', () => {
   projectDialog.close();
@@ -29,6 +32,7 @@ projectsContainer.addEventListener('click', (e) =>
 );
 
 function handleAddProject() {
+  projectDialog.close();
   const currentProject = getProject(projectTitleInput.dataset.projectId);
   if (!currentProject) {
     const project = createProject(projectTitleInput.value);
@@ -37,7 +41,6 @@ function handleAddProject() {
   } else {
     editProject(currentProject, projectTitleInput.value);
     updateCurrentProjectTitle(projectTitleInput.value);
-    projectTitleInput.dataset.projectId = '';
   }
 
   renderProjects(projectsList);
@@ -45,33 +48,31 @@ function handleAddProject() {
 }
 
 function handleProjectSelect(element) {
-  if (element?.matches('.project')) {
-    const currentProject = getProject(element?.dataset.projectId);
-    console.log(currentProject);
-    updateCurrentProjectTitle(element?.textContent);
-    renderTasks(currentProject.tasksList);
+  const parent = element.closest('.project-card');
+  const project = parent.querySelector('.project');
+  const currentProject = getProject(project?.dataset.projectId);
+
+  if (element?.matches('.project') || element?.matches('.project-card')) {
+    updateCurrentProjectTitle(project?.textContent);
+    renderTasks(currentProject);
   }
 
   if (element?.matches('.edit-project')) {
-    const parent = element.closest('.project-card');
-    const project = parent.querySelector('.project');
-    const currentProject = getProject(project?.dataset.projectId);
     projectDialog.showModal();
     projectTitleInput.value = currentProject.name;
     projectTitleInput.dataset.projectId = currentProject.id;
   }
 
   if (element?.matches('.delete-project')) {
-    const parent = element.closest('.project-card');
-    const project = parent.querySelector('.project');
-    const currentProject = getProject(project?.dataset.projectId);
     currentProject.tasksList.length = 0;
-    renderTasks(currentProject.tasksList);
+    renderTasks(currentProject);
     deleteProject(currentProject.id);
     renderProjects(projectsList);
-    updateCurrentProjectTitle('')
+    updateCurrentProjectTitle('');
+
   }
 }
+
 function updateCurrentProjectTitle(title) {
   projectTitleEl.textContent = title;
 }
