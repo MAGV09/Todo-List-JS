@@ -9,7 +9,11 @@
     <div class="hero">
       <aside class="side-bar" id="side-bar-el">
         <div class="add-task-container" id="add-task-el">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="add-task-el">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            id="add-task-el"
+          >
             <title>plus-circle</title>
             <path
               d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
@@ -19,14 +23,17 @@
         </div>
         <div class="lists" id="lists-el">
           <p class="lists-title">My lists</p>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="add-project-el">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            id="add-project-el"
+          >
             <title>plus</title>
             <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
           </svg>
         </div>
         <div id="lists-container-el"></div>
         <!-- <div>Personal</div> -->
-      
       </aside>
       <main class="main">
         <div id="tasks-page-el">
@@ -60,16 +67,26 @@
             </div>
           </div> -->
         </div>
-        <dialog id="task-dialog" >
+        <dialog id="task-dialog">
           <form action="" method="dialog" id="task-form">
-            <input type="text" placeholder="Title" id="task-title-in" data-task-id="" required />
-            <input type="text" placeholder="Description" id="task-description-in" />
+            <input
+              type="text"
+              placeholder="Title"
+              id="task-title-in"
+              data-task-id=""
+              required
+            />
+            <input
+              type="text"
+              placeholder="Description"
+              id="task-description-in"
+            />
             <input type="date" name="date" id="task-date-in" required />
             <label for="task-priority-in">Priority</label>
             <select id="task-priority-in" required>
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
             </select>
 
             <div class="button-group">
@@ -85,7 +102,13 @@
 
         <dialog id="list-dialog">
           <form action="" method="dialog" id="list-form">
-            <input type="text" placeholder="Title" id="list-title-input" data-project-id="" required />
+            <input
+              type="text"
+              placeholder="Title"
+              id="list-title-input"
+              data-project-id=""
+              required
+            />
             <div class="button-group">
               <button type="button" id="lists-cancel-btn">Cancel</button>
               <button type="submit">Add</button>

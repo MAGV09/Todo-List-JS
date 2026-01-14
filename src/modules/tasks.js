@@ -9,16 +9,16 @@ function completeTask(task) {
 }
 
 function deleteTask(taskId, tasksArray) {
- const index = tasksArray.findIndex(task => task.id === taskId);
+  const index = tasksArray.findIndex((task) => task.id === taskId);
   if (index !== -1) {
     tasksArray.splice(index, 1);
   }
 }
 
 function editTask(task, name, description, dueDate, priority) {
-  task.name = name||task.name;
-  task.description = description||task.description;
-  task.dueDate = dueDate||task.dueDate;
-  task.priority = priority||task.priority;
+  task.name = name;
+  task.description = description;
+  task.dueDate = dueDate;
+  task.priority = priority;
 }
 export { getTask, addTask, completeTask, deleteTask, editTask };

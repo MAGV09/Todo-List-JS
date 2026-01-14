@@ -7,7 +7,7 @@ import {
   projectsList,
 } from '../projects.js';
 import { renderProjects, renderTasks } from './render.js';
-
+import { storeLists } from '../storage.js';
 const addProjectEl = document.querySelector('#add-project-el');
 const projectDialog = document.querySelector('#list-dialog');
 const projectForm = document.querySelector('#list-form');
@@ -17,10 +17,10 @@ const projectsContainer = document.querySelector('#lists-container-el');
 const projectTitleEl = document.querySelector('#project-title-el');
 addProjectEl.addEventListener('click', () => projectDialog.showModal());
 
-projectForm.addEventListener('submit',(e)=>{
+projectForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  handleAddProject()
-} );
+  handleAddProject();
+});
 
 projectCancelBtn.addEventListener('click', () => {
   projectDialog.close();
@@ -42,7 +42,7 @@ function handleAddProject() {
     editProject(currentProject, projectTitleInput.value);
     updateCurrentProjectTitle(projectTitleInput.value);
   }
-
+  storeLists();
   renderProjects(projectsList);
   projectForm.reset();
 }
@@ -69,7 +69,7 @@ function handleProjectSelect(element) {
     deleteProject(currentProject.id);
     renderProjects(projectsList);
     updateCurrentProjectTitle('');
-
+    storeLists();
   }
 }
 

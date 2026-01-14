@@ -8,7 +8,7 @@ import {
 } from '../tasks.js';
 import { projectsList, getProject } from '../projects.js';
 import { renderTasks } from './render.js';
-
+import { storeLists } from '../storage.js';
 const addTaskEl = document.querySelector('#add-task-el');
 const taskDialog = document.querySelector('#task-dialog');
 const taskForm = document.querySelector('#task-form');
@@ -25,12 +25,13 @@ let editMode = false;
 addTaskEl.addEventListener('click', () => openTaskDialog(taskDialog));
 taskForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  taskDialog.close()
+  taskDialog.close();
   if (editMode) {
-    handleEditTask()
+    handleEditTask();
   } else {
     handleAddTask();
   }
+  storeLists();
 });
 function handleEditTask() {
   const currentProject = getProject(taskTitleInput.dataset.projectId);
@@ -38,14 +39,15 @@ function handleEditTask() {
     taskTitleInput.dataset.taskId,
     currentProject.tasksList
   );
-  currentTask.name = taskTitleInput.value;
-  currentTask.description = taskDescriptionInput.value;
-  currentTask.dueDate = taskDateInput.value;
-  currentTask.priority = taskPriorityInput.value;
+  editTask(currentTask,taskTitleInput.value,taskDescriptionInput.value,taskDateInput.value,taskPriorityInput.value)
+  // currentTask.name = taskTitleInput.value;
+  // currentTask.description = taskDescriptionInput.value;
+  // currentTask.dueDate = taskDateInput.value;
+  // currentTask.priority = taskPriorityInput.value;
   renderTasks(currentProject);
-  taskListSelector.disabled=false
+  taskListSelector.disabled = false;
   taskForm.reset();
-  editMode=false
+  editMode = false;
 }
 function handleAddTask() {
   const task = createTask(
@@ -64,8 +66,8 @@ function handleAddTask() {
 
 taskCancelBtn.addEventListener('click', () => {
   taskDialog.close();
-  taskListSelector.disabled=false
-  editMode=false
+  taskListSelector.disabled = false;
+  editMode = false;
   taskForm.reset();
 });
 
@@ -94,7 +96,7 @@ function handleHeroClick(element) {
   if (element?.matches('.edit-task')) {
     editMode = true;
     taskDialog.showModal();
-    taskListSelector.disabled = true
+    taskListSelector.disabled = true;
     taskTitleInput.value = currentTask.name;
     taskTitleInput.dataset.taskId = currentTask.id;
     taskTitleInput.dataset.projectId = currentProject.id;
@@ -102,23 +104,17 @@ function handleHeroClick(element) {
     taskDateInput.value = currentTask.dueDate;
     taskPriorityInput.value = currentTask.priority;
   }
-  if(element?.matches('.delete-task')){
+  if (element?.matches('.delete-task')) {
     console.log(currentProject);
     console.log(currentTask);
-    deleteTask(currentTask.id,currentProject.tasksList)
-    renderTasks(currentProject)
+    deleteTask(currentTask.id, currentProject.tasksList);
+    renderTasks(currentProject);
+    storeLists();
   }
-  if(element?.matches('.task-checkbox')){
-    currentTask.completed= currentTask.completed===false?true:false
-    const title = taskContainer.querySelector('.task-title-container')
-    title.classList.toggle('completed')
+  if (element?.matches('.task-checkbox')) {
+    completeTask(currentTask)
+    const title = taskContainer.querySelector('.task-title-container');
+    title.classList.toggle('completed');
+    storeLists();
   }
 }
-
-//   if (element?.matches('.delete-project')) {
-//     currentProject.tasksList.length = 0;
-//     renderTasks(currentProject.tasksList);
-//     deleteProject(currentProject.id);
-//     renderProjects(projectsList);
-//     updateCurrentProjectTitle('');
-//   }

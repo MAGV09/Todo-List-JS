@@ -103,6 +103,7 @@ svg {
   transition: all 0.2s;
   padding: 0 0.5rem;
 }
+
 .task-icon-container > *:hover {
   background-color: #dddddd;
 }

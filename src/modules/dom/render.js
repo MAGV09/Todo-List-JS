@@ -10,7 +10,7 @@ function createTaskCard() {
   const checkBox = document.createElement('input');
   checkBox.setAttribute('type', 'checkbox');
   taskContainer.appendChild(checkBox);
-  checkBox.classList.add('task-checkbox')
+  checkBox.classList.add('task-checkbox');
 
   const taskTitleContainer = document.createElement('div');
   taskTitleContainer.classList.add('task-title-container');
@@ -57,7 +57,7 @@ function createTaskCard() {
   const taskPriority = document.createElement('p');
   taskDateContainer.appendChild(taskPriority);
 
-  return {taskContainer, taskTitle, taskDescription, taskDate, taskPriority };
+  return { taskContainer, taskTitle, taskDescription, taskDate, taskPriority,checkBox };
 }
 
 function createProjectCard() {
@@ -99,12 +99,18 @@ function renderTasks(tasks) {
     taskCard.taskTitle.textContent = task.name;
     taskCard.taskDate.textContent = task.dueDate;
     taskCard.taskPriority.textContent = task.priority;
-    taskCard.taskContainer.dataset.taskId = task.id
-    taskCard.taskContainer.dataset.projectId = tasks.id
+    taskCard.taskContainer.dataset.taskId = task.id;
+    taskCard.taskContainer.dataset.projectId = tasks.id;
     task.description
       ? (taskCard.taskDescription.textContent = task.description)
       : taskCard.taskDescription.remove();
-      
+    if (task.completed) {
+      const title = taskCard.taskContainer.querySelector(
+        '.task-title-container'
+      );
+      title.classList.add('completed');
+      taskCard.checkBox.checked=true
+    }
   });
 }
 
