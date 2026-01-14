@@ -8,6 +8,7 @@ import {
 } from '../projects.js';
 import { renderProjects, renderTasks } from './render.js';
 import { storeLists } from '../storage.js';
+
 const addProjectEl = document.querySelector('#add-project-el');
 const projectDialog = document.querySelector('#list-dialog');
 const projectForm = document.querySelector('#list-form');
@@ -37,7 +38,6 @@ function handleAddProject() {
   if (!currentProject) {
     const project = createProject(projectTitleInput.value);
     addProject(project);
-    console.log(projectsList);
   } else {
     editProject(currentProject, projectTitleInput.value);
     updateCurrentProjectTitle(projectTitleInput.value);

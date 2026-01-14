@@ -9,6 +9,7 @@ import {
 import { projectsList, getProject } from '../projects.js';
 import { renderTasks } from './render.js';
 import { storeLists } from '../storage.js';
+
 const addTaskEl = document.querySelector('#add-task-el');
 const taskDialog = document.querySelector('#task-dialog');
 const taskForm = document.querySelector('#task-form');
@@ -39,11 +40,13 @@ function handleEditTask() {
     taskTitleInput.dataset.taskId,
     currentProject.tasksList
   );
-  editTask(currentTask,taskTitleInput.value,taskDescriptionInput.value,taskDateInput.value,taskPriorityInput.value)
-  // currentTask.name = taskTitleInput.value;
-  // currentTask.description = taskDescriptionInput.value;
-  // currentTask.dueDate = taskDateInput.value;
-  // currentTask.priority = taskPriorityInput.value;
+  editTask(
+    currentTask,
+    taskTitleInput.value,
+    taskDescriptionInput.value,
+    taskDateInput.value,
+    taskPriorityInput.value
+  );
   renderTasks(currentProject);
   taskListSelector.disabled = false;
   taskForm.reset();
@@ -57,7 +60,6 @@ function handleAddTask() {
     taskPriorityInput.value
   );
   const currentProject = getProject(taskListSelector.value);
-  console.log(currentProject);
   addTask(task, currentProject.tasksList);
   projectTitleEl.textContent = currentProject.name;
   renderTasks(currentProject);
@@ -105,14 +107,12 @@ function handleHeroClick(element) {
     taskPriorityInput.value = currentTask.priority;
   }
   if (element?.matches('.delete-task')) {
-    console.log(currentProject);
-    console.log(currentTask);
     deleteTask(currentTask.id, currentProject.tasksList);
     renderTasks(currentProject);
     storeLists();
   }
   if (element?.matches('.task-checkbox')) {
-    completeTask(currentTask)
+    completeTask(currentTask);
     const title = taskContainer.querySelector('.task-title-container');
     title.classList.toggle('completed');
     storeLists();
